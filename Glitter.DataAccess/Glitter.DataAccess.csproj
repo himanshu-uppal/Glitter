@@ -49,7 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IEntity.cs" />
+    <Compile Include="Abstract\IEntityRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
+    <Compile Include="Concrete\EntityRepository.cs" />
+    <Compile Include="Core\PaginatedList.cs" />
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\Hashtag.cs" />
     <Compile Include="Entities\Reaction.cs" />
@@ -59,6 +62,7 @@
     <Compile Include="Entities\TweetReaction.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserFollower.cs" />
+    <Compile Include="Extensions\IQueryableExtensions.cs" />
     <Compile Include="Migrations\201812201031256_Added all entities.cs" />
     <Compile Include="Migrations\201812201031256_Added all entities.Designer.cs">
       <DependentUpon>201812201031256_Added all entities.cs</DependentUpon>
