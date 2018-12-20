@@ -8,13 +8,12 @@ using System.Threading.Tasks;
 
 namespace Glitter.DataAccess.Entities
 {
-    public class TweetReaction:IEntity
+    public class TweetImage:IEntity
     {
         [Key]
         public Guid Key { get; set; }
+        public string ImagePath { get; set; }
 
         public virtual Tweet Tweet { get; set; }
-        public virtual User User { get; set; }
-        public virtual Reaction Reaction { get; set; }
     }
 }

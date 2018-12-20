@@ -12,5 +12,6 @@ namespace Glitter.DataAccess.Entities
     {
         [Key]
         public Guid Key { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -12,5 +12,8 @@ namespace Glitter.DataAccess.Entities
     {
         [Key]
         public Guid Key { get; set; }
+
+        public virtual User Follower { get; set; }
+        public virtual User Followee { get; set; }
     }
 }

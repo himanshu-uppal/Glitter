@@ -12,5 +12,14 @@ namespace Glitter.DataAccess.Entities
     {
         [Key]
         public Guid Key { get; set; }
+        public string Message { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime? LastUpdatedOn { get; set; }
+
+        public virtual User User { get; set; }
+        public virtual ICollection<TweetReaction> TweetReactions { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+        public ICollection<Hashtag> Hashtags { get; set; }
+        public ICollection<TweetImage> TweetImages { get; set; }
     }
 }
