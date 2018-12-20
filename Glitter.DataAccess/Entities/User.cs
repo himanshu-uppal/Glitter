@@ -24,8 +24,8 @@ namespace Glitter.DataAccess.Entities
         public DateTime CreatedOn { get; set; }
         public DateTime? LastUpdatedOn { get; set; }
 
-        public virtual ICollection<UserFollower> Followers { get; set; }
-        public virtual ICollection<UserFollower> Followees { get; set; }
+        //public virtual ICollection<UserFollower> UserFollowers { get; set; }
+        //public virtual ICollection<UserFollower> UserFollowees { get; set; }
         public virtual ICollection<Tweet> Tweets { get; set; }
         public virtual ICollection<TweetReaction> TweetReactions { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }

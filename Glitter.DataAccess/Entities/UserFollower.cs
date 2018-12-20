@@ -15,5 +15,6 @@ namespace Glitter.DataAccess.Entities
 
         public virtual User Follower { get; set; }
         public virtual User Followee { get; set; }
+        
     }
 }
