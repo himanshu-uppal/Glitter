@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glitter.DataAccess", "Glitt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glitter.Presentation", "Glitter.Presentation\Glitter.Presentation.csproj", "{F8371CE2-B780-4F81-B25D-9C15EA25BDB2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glitter.Business", "Glitter.Business\Glitter.Business.csproj", "{07FF2B21-45DF-41EA-9509-7E77CBE919C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F8371CE2-B780-4F81-B25D-9C15EA25BDB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8371CE2-B780-4F81-B25D-9C15EA25BDB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8371CE2-B780-4F81-B25D-9C15EA25BDB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07FF2B21-45DF-41EA-9509-7E77CBE919C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07FF2B21-45DF-41EA-9509-7E77CBE919C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07FF2B21-45DF-41EA-9509-7E77CBE919C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07FF2B21-45DF-41EA-9509-7E77CBE919C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
