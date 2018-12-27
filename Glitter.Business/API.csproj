@@ -66,6 +66,14 @@
     <Compile Include="Config\AutofacConfig.cs" />
     <Compile Include="Config\RouteConfig.cs" />
     <Compile Include="Config\WebAPIConfig.cs" />
+    <Compile Include="Controllers\TweetController.cs" />
+    <Compile Include="Extensions\ModelDtoExtensions\CommentExtensions.cs" />
+    <Compile Include="Extensions\ModelDtoExtensions\ReactionExtensions.cs" />
+    <Compile Include="Extensions\ModelDtoExtensions\TweetExtensions.cs" />
+    <Compile Include="Extensions\ModelDtoExtensions\TweetHashtagExtensions.cs" />
+    <Compile Include="Extensions\ModelDtoExtensions\TweetImageExtensions.cs" />
+    <Compile Include="Extensions\ModelDtoExtensions\TweetReactionExtensions.cs" />
+    <Compile Include="Extensions\ModelDtoExtensions\UserExtensions.cs" />
     <Compile Include="Formatting\SuppressesRequiredMemberSelector.cs" />
     <Compile Include="MessageHandlers\RequireHttpsMessageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,9 +83,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Business\Business.csproj">
+      <Project>{3e4b705f-1e53-4ade-af35-c3b78b03223b}</Project>
+      <Name>Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Glitter.DataAccess\DataAccess.csproj">
       <Project>{b366c60a-7447-490b-9ce9-0d1ee3cb6d0e}</Project>
       <Name>DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shared\Shared.csproj">
+      <Project>{5d987921-aef9-43bf-883d-1bb8a5454516}</Project>
+      <Name>Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
