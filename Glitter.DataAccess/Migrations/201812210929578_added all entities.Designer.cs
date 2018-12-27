@@ -7,13 +7,13 @@ namespace Glitter.DataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Addedallentities : IMigrationMetadata
+    public sealed partial class addedallentities : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Addedallentities));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addedallentities));
         
         string IMigrationMetadata.Id
         {
-            get { return "201812201031256_Added all entities"; }
+            get { return "201812210929578_added all entities"; }
         }
         
         string IMigrationMetadata.Source

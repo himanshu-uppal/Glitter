@@ -129,17 +129,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Glitter.Business\Glitter.Business.csproj">
+    <ProjectReference Include="..\Glitter.Business\API.csproj">
       <Project>{07ff2b21-45df-41ea-9509-7e77cbe919c3}</Project>
-      <Name>Glitter.Business</Name>
+      <Name>API</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Glitter.DataAccess\Glitter.DataAccess.csproj">
+    <ProjectReference Include="..\Glitter.DataAccess\DataAccess.csproj">
       <Project>{b366c60a-7447-490b-9ce9-0d1ee3cb6d0e}</Project>
-      <Name>Glitter.DataAccess</Name>
+      <Name>DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

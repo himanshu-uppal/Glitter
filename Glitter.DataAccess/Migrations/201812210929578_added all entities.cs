@@ -3,7 +3,7 @@ namespace Glitter.DataAccess.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Addedallentities : DbMigration
+    public partial class addedallentities : DbMigration
     {
         public override void Up()
         {
