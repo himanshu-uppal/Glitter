@@ -12,6 +12,27 @@ namespace Glitter.Business.Extensions.ModelDtoExtensions
     {
         public static TweetDto ToTweetDto(this Tweet tweet)
         {
+            IEnumerable<TweetReactionDto> tweetReactionDtos = null;
+            IEnumerable<CommentDto> commentDtos = null;
+            IEnumerable<string> tweetHashtagDtos = null;
+            IEnumerable<string> tweetImagesDtos = null;
+
+            if (tweet.TweetReactions != null)
+            {
+                tweetReactionDtos = tweet.TweetReactions.Select(tr => tr.ToTweetReactionDto());
+            }
+            if (tweet.Comments != null)
+            {
+                commentDtos = tweet.Comments.Select(c => c.ToCommentDto());
+            }
+            if (tweet.TweetHashtags !=null)
+            {
+                tweetHashtagDtos = tweet.TweetHashtags.Select(th => th.ToTweetHashtagDto());
+            }
+            if (tweet.TweetImages !=null)
+            {
+                tweetImagesDtos = tweet.TweetImages.Select(ti => ti.ToTweetImageDto());
+            }
             return new TweetDto
             {
                 Key = tweet.Key,
@@ -19,10 +40,10 @@ namespace Glitter.Business.Extensions.ModelDtoExtensions
                 CreatedOn = tweet.CreatedOn,
                 LastUpdatedOn = tweet.LastUpdatedOn,
                 User = tweet.User.ToUserDto(),
-                TweetReactions = tweet.TweetReactions.Select(tr=>tr.ToTweetReactionDto()),
-                Comments = tweet.Comments.Select(c=>c.ToCommentDto()),
-                TweetHashtags = tweet.TweetHashtags.Select(th=>th.ToTweetHashtagDto()),
-                TweetImages = tweet.TweetImages.Select(ti=>ti.ToTweetImageDto()),
+                TweetReactions = tweetReactionDtos,
+                Comments = commentDtos,
+                TweetHashtags = tweetHashtagDtos,
+                TweetImages = tweetImagesDtos,
                 TweetReactionsCount = tweet.GetTweetReactionCounts()
             };
         }

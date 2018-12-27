@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Shared.DTOs
 {
-    public class TweetHashtagDto
-    {              
+    public class TweetHashtagDto:IDto
+    {
+        public Guid Key { get; set; }
         public  HashtagDto Hashtag { get; set; }
     }
 }

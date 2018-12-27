@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Shared.DTOs
 {
-    public class UserDto
+    public class UserDto:IDto
     {
         public Guid Key { get; set; }
         public string FirstName { get; set; }

@@ -16,6 +16,7 @@ namespace Glitter.DataAccess
         int pageIndex, int pageSize,
         int totalCount, IQueryable<T> source)
         {
+            if(source.Count() > 0)
             AddRange(source);
             PageIndex = pageIndex;
             PageSize = pageSize;

@@ -12,8 +12,9 @@ using Glitter.DataAccess.Concrete;
 using System.Data.Entity;
 using Glitter.DataAccess.Abstract;
 using IContainer = Autofac.IContainer;
-
-
+using Glitter.DataAccess.Services;
+using Business.Concrete;
+using Business.Abstract;
 
 namespace Glitter.API.Config
 {
@@ -51,7 +52,21 @@ namespace Glitter.API.Config
 
             //Services
 
-          
+            builder.RegisterType<GlitterService>()
+            .As<IGlitterService>()
+            .InstancePerRequest();
+
+            //Managers
+
+            builder.RegisterType<TweetManager>()
+          .As<ITweetManager>()
+          .InstancePerRequest();
+
+
+
+
+
+
 
             return builder.Build();
 

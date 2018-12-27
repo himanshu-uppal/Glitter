@@ -4,9 +4,12 @@ using System.Text;
 
 namespace Shared.DTOs
 {
-    public class CommentDto
-    {        
+    public class CommentDto:IDto
+    { 
+        public Guid Key { get; set; }
+        
         public string Message { get; set; }
-        public  UserDto User { get; set; }        
+        public  UserDto User { get; set; }
+        
     }
 }

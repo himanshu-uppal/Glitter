@@ -10,7 +10,7 @@ namespace Glitter.DataAccess.Services
     public interface IGlitterService
     {
         PaginatedList<Tweet> GetTweets(int pageIndex, int pageSize);
-        IQueryable<Tweet> GetAllTweets();
+        IEnumerable<Tweet> GetAllTweets();
 
     
     }

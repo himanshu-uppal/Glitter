@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Shared.DTOs
 {
-    public class TweetDto
+    public class TweetDto:IDto
     {       
         public Guid Key { get; set; }
         public string Message { get; set; }

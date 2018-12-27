@@ -16,7 +16,7 @@ namespace Glitter.DataAccess.Services
             _tweetRepository = tweetRepository;
 
         }
-        public IQueryable<Tweet> GetAllTweets()
+        public IEnumerable<Tweet> GetAllTweets()
         {
             var tweets = _tweetRepository.GetAll();
             return tweets;

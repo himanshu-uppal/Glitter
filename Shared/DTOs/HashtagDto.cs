@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Shared.DTOs
 {
-    public class HashtagDto
-    {       
+    public class HashtagDto:IDto
+    {
+        public Guid Key { get; set; }
         public string Name { get; set; }       
     }
 }

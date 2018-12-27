@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Glitter.Business.Extensions;
+using Glitter.Business.Extensions.ModelDtoExtensions;
 using Glitter.DataAccess;
 using Shared.DTOs;
 using System;
@@ -18,7 +20,7 @@ namespace Glitter.Business.Controllers
             _tweetManager = tweetManager;
 
         }
-        public PaginatedList<TweetDto> GetTweets()
+        public PaginatedDto<TweetDto> GetTweets()
         {
             var tweets = _tweetManager.GetTweets();
             return tweets.ToPaginatedDto(tweets.Select(tw=>tw.ToTweetDto()));

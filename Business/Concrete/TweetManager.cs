@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Glitter.DataAccess;
 using Glitter.DataAccess.Entities;
 using Glitter.DataAccess.Services;
 using Shared.DTOs;
@@ -18,9 +19,9 @@ namespace Business.Concrete
             _glitterService = glitterService;
 
         }
-        public IQueryable<Tweet> GetTweets()
+        public PaginatedList<Tweet> GetTweets()
         {
-            return _glitterService.GetAllTweets();
+            return _glitterService.GetTweets(1, _glitterService.GetAllTweets().Count());
         }
     }
 }
