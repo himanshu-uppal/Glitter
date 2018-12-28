@@ -97,6 +97,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\TweetController.cs" />
+    <Compile Include="CustomActionFilters\UserAuthenticationFilter.cs" />
     <Compile Include="Extensions\ModelDtoExtensions\CommentExtensions.cs" />
     <Compile Include="Extensions\ModelDtoExtensions\ReactionExtensions.cs" />
     <Compile Include="Extensions\ModelDtoExtensions\TweetExtensions.cs" />

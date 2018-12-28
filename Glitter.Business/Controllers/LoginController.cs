@@ -22,7 +22,7 @@ namespace Glitter.Business.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage Login(LoginRequestModel loginRequestModel)
+        public HttpResponseMessage Login([FromBody]LoginRequestModel loginRequestModel)
         {
             User user = _userManager.GetUserByEmail(loginRequestModel.Email);
             if (user == null)
@@ -36,12 +36,12 @@ namespace Glitter.Business.Controllers
         }
 
         [HttpGet]
-        public HttpResponseMessage Validate(string token, string email)
+        public HttpResponseMessage GetValidate(string token, string email)
         {
             bool exists = _userManager.GetUserByEmail(email) != null;
             if (!exists) return Request.CreateResponse(HttpStatusCode.NotFound,
                  "The user was not found.");
-            string tokenEmail = TokenManager.ValidateToken(token);
+            string tokenEmail = "";// TokenManager.ValidateToken(token);
             if (email.Equals(tokenEmail))
                 return Request.CreateResponse(HttpStatusCode.OK);
             return Request.CreateResponse(HttpStatusCode.BadRequest);

@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Glitter.Business.CustomActionFilters;
 using Glitter.Business.Extensions;
 using Glitter.Business.Extensions.ModelDtoExtensions;
 using Glitter.DataAccess;
@@ -9,11 +10,12 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 
 namespace Glitter.Business.Controllers
 {
-    [Authorize]
+    [UserAuthenticationFilter]
     public class TweetController:ApiController
     {
         private readonly ITweetManager _tweetManager;
@@ -36,6 +38,7 @@ namespace Glitter.Business.Controllers
 
         public PaginatedDto<TweetDto> GetTweets()
         {
+            var userKey = HttpContext.Current.User.Identity.Name;
             var tweets = _tweetManager.GetTweets();
             return tweets.ToPaginatedDto(tweets.Select(tw => tw.ToTweetDto()));
         }

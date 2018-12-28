@@ -7,11 +7,13 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Business.Abstract;
 
 namespace Glitter.Business.Providers
 {
     public class TokenManager
     {
+        
         private static string Secret = "XCAP05H6LoKvbRRa/QkqLNMI7cOHguaRyHzyg7n5qEkGjQmtBhz4SzYh4Fqwjyi3KJHlSXKPwVu2+bXr6CtpgQ==";
         public static string GenerateToken(string email)
         {
@@ -58,7 +60,7 @@ namespace Glitter.Business.Providers
             }
         }
 
-        public static string ValidateToken(string token)
+        public static string GetEmailFromToken(string token)
         {
             string email = null;
             ClaimsPrincipal principal = GetPrincipal(token);
@@ -77,6 +79,8 @@ namespace Glitter.Business.Providers
             email = emailClaim.Value;
             return email;
         }
+
+      
     }
 
 }
