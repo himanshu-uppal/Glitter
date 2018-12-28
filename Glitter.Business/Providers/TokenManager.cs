@@ -12,7 +12,7 @@ namespace Glitter.Business.Providers
 {
     public class TokenManager
     {
-        private static string Secret = "himanshu";
+        private static string Secret = "XCAP05H6LoKvbRRa/QkqLNMI7cOHguaRyHzyg7n5qEkGjQmtBhz4SzYh4Fqwjyi3KJHlSXKPwVu2+bXr6CtpgQ==";
         public static string GenerateToken(string email)
         {
             byte[] key = Convert.FromBase64String(Secret);

@@ -11,7 +11,7 @@ namespace Glitter.DataAccess.Services
     //interface for memberships , users
     public interface IMembershipService
     {
-        bool ValidateUser(string username, string password);
+        bool ValidateUser(string email, string password);
 
         OperationResult<User> CreateUser(string username, string email, string password);
        

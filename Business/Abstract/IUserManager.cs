@@ -11,7 +11,7 @@ namespace Business.Abstract
     public interface IUserManager
     {
 
-        bool ValidateUser(string username, string password);
+        bool ValidateUser(string email, string password);
 
         OperationResult<User> CreateUser(string username, string email, string password);
 

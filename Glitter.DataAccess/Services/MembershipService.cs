@@ -34,12 +34,12 @@ namespace Glitter.DataAccess.Services
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns>returns valid user context with principal and user details</returns>
-        public bool ValidateUser(string username, string password)
+        public bool ValidateUser(string email, string password)
         {
 
-            var user = new User(); //just to avoid errors
-            //getting the user using the usrname given
-            //var user = _userRepository.GetSingleUserByUsername(username); //implement extension method
+
+            //getting the user using the email given
+            var user = _userRepository.GetUserByEmail(email); //implement extension method
 
             //if user is null
             if (user == null)
@@ -51,9 +51,9 @@ namespace Glitter.DataAccess.Services
 
             //validating password and if valid then
             if (isPasswordValid(user, password))
-            {      
+            {
 
-               
+                return true;
 
             
             }

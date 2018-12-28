@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Glitter.Business.Providers;
 using Glitter.DataAccess.Entities;
+using Shared.RequestModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,13 +22,13 @@ namespace Glitter.Business.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage Login(User userModel)
+        public HttpResponseMessage Login(LoginRequestModel loginRequestModel)
         {
-            User user = _userManager.GetUserByEmail(userModel.Email);
+            User user = _userManager.GetUserByEmail(loginRequestModel.Email);
             if (user == null)
                 return Request.CreateResponse(HttpStatusCode.NotFound,
                      "The user was not found.");
-            bool credentials = _userManager.ValidateUser(userModel.Email, userModel.HashedPassword);  //change hashedPasword to password
+            bool credentials = _userManager.ValidateUser(loginRequestModel.Email, loginRequestModel.Password);  //change hashedPasword to password
             if (!credentials) return Request.CreateResponse(HttpStatusCode.Forbidden,
                 "The username/password combination was wrong.");
             return Request.CreateResponse(HttpStatusCode.OK,

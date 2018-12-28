@@ -18,9 +18,9 @@ namespace Business.Concrete
         {
             _membershipService = membershipService;
         }
-        public bool ValidateUser(string username, string password)
+        public bool ValidateUser(string email, string password)
         {
-            return _membershipService.ValidateUser(username, password);
+            return _membershipService.ValidateUser(email, password);
         }
 
         public OperationResult<User> CreateUser(string username, string email, string password)
