@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\ITweetManager.cs" />
+    <Compile Include="Abstract\IUserManager.cs" />
     <Compile Include="Concrete\TweetManager.cs" />
+    <Compile Include="Concrete\UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

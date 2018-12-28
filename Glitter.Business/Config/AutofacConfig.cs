@@ -56,10 +56,22 @@ namespace Glitter.API.Config
             .As<IGlitterService>()
             .InstancePerRequest();
 
+            builder.RegisterType<MembershipService>()
+            .As<IMembershipService>()
+            .InstancePerRequest();
+
+            builder.RegisterType<CryptoService>()
+            .As<ICryptoService>()
+            .InstancePerRequest();
+
             //Managers
 
             builder.RegisterType<TweetManager>()
           .As<ITweetManager>()
+          .InstancePerRequest();
+
+            builder.RegisterType<UserManager>()
+          .As<IUserManager>()
           .InstancePerRequest();
 
 

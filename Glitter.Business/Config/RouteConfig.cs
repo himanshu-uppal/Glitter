@@ -16,7 +16,7 @@ namespace Glitter.Business.Config
             routes.MapHttpRoute(
                     "DefaultHttpRoute",
                     "api/{controller}/{key}",
-                    defaults: new { key = RouteParameter.Optional });
+                    defaults: new {controller = "Tweet", key = RouteParameter.Optional });
        // constraints: new { key = new GuidRouteConstraint() });
 
             routes.MapHttpRoute(

@@ -6,12 +6,14 @@ using Shared.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace Glitter.Business.Controllers
 {
+    [Authorize]
     public class TweetController:ApiController
     {
         private readonly ITweetManager _tweetManager;
@@ -20,10 +22,22 @@ namespace Glitter.Business.Controllers
             _tweetManager = tweetManager;
 
         }
-        public PaginatedDto<TweetDto> GetTweets()
+        [Route("")]
+        public IEnumerable<object> Get()
         {
-            var tweets = _tweetManager.GetTweets();
-            return tweets.ToPaginatedDto(tweets.Select(tw=>tw.ToTweetDto()));
+            var identity = User.Identity as ClaimsIdentity;
+
+            return identity.Claims.Select(c => new
+            {
+                Type = c.Type,
+                Value = c.Value
+            });
         }
+
+        //public PaginatedDto<TweetDto> GetTweets()
+        //{
+        //    var tweets = _tweetManager.GetTweets();
+        //    return tweets.ToPaginatedDto(tweets.Select(tw=>tw.ToTweetDto()));
+        //}
     }
 }
