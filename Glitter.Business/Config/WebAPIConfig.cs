@@ -1,6 +1,5 @@
 ﻿using Glitter.Business.Formatting;
 using Glitter.Business.MessageHandlers;
-using Microsoft.Owin.Security.OAuth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +18,7 @@ namespace Glitter.Business.Config
         public static void Configure(HttpConfiguration config)
         {
 
-            // Web API configuration and services  
-            // Configure Web API to use only bearer token authentication.  
-            config.SuppressDefaultHostAuthentication();
-            config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+            
 
 
             //Formatters
@@ -51,6 +47,10 @@ namespace Glitter.Business.Config
             typeof(ModelValidatorProvider),
                validator => !(validator
             is DataAnnotationsModelValidatorProvider));
+
+
+            //StartUp 
+            
 
  //           config.ParameterBindingRules.Insert(0,
  //descriptor => typeof(IRequestCommand)

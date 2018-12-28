@@ -63,6 +63,7 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserFollower.cs" />
     <Compile Include="Extensions\IQueryableExtensions.cs" />
+    <Compile Include="Extensions\UserRepositoryExtensions.cs" />
     <Compile Include="Migrations\201812210929578_added all entities.cs" />
     <Compile Include="Migrations\201812210929578_added all entities.Designer.cs">
       <DependentUpon>201812210929578_added all entities.cs</DependentUpon>

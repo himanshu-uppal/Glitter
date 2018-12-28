@@ -22,22 +22,22 @@ namespace Glitter.Business.Controllers
             _tweetManager = tweetManager;
 
         }
-        [Route("")]
-        public IEnumerable<object> Get()
-        {
-            var identity = User.Identity as ClaimsIdentity;
-
-            return identity.Claims.Select(c => new
-            {
-                Type = c.Type,
-                Value = c.Value
-            });
-        }
-
-        //public PaginatedDto<TweetDto> GetTweets()
+        //[Route("")]
+        //public IEnumerable<object> Get()
         //{
-        //    var tweets = _tweetManager.GetTweets();
-        //    return tweets.ToPaginatedDto(tweets.Select(tw=>tw.ToTweetDto()));
+        //    var identity = User.Identity as ClaimsIdentity;
+
+        //    return identity.Claims.Select(c => new
+        //    {
+        //        Type = c.Type,
+        //        Value = c.Value
+        //    });
         //}
+
+        public PaginatedDto<TweetDto> GetTweets()
+        {
+            var tweets = _tweetManager.GetTweets();
+            return tweets.ToPaginatedDto(tweets.Select(tw => tw.ToTweetDto()));
+        }
     }
 }

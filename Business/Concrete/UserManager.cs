@@ -57,5 +57,9 @@ namespace Business.Concrete
             return _membershipService.GetUser(name);
 
         }
+        public User GetUserByEmail(string email)
+        {
+            return _membershipService.GetUserByEmail(email);
+        }
     }
 }

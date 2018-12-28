@@ -24,7 +24,8 @@ namespace Glitter.DataAccess.Services
 
         IEnumerable<User> GetUsers();
         User GetUser(Guid key);
-        User GetUser(string name);       
+        User GetUser(string name);
+        User GetUserByEmail(string email);
 
     }
 }

@@ -22,6 +22,7 @@ namespace Glitter.Presentation
             WebAPIConfig.Configure(config);
             AutofacConfig.Initialize(config);
             EFConfig.Initialize();
+            
         }
     }
 }

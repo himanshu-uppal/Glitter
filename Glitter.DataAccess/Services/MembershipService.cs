@@ -1,5 +1,6 @@
 ﻿using Glitter.DataAccess.Abstract;
 using Glitter.DataAccess.Entities;
+using Glitter.DataAccess.Extensions;
 using Shared.Classes;
 using System;
 using System.Collections.Generic;
@@ -72,7 +73,7 @@ namespace Glitter.DataAccess.Services
         public OperationResult<User> CreateUser(string username, string email, string password)
         {
             //getting all users having the same username
-            var existingUser = _userRepository.GetAll().Any(x => x.FirstName == username);
+            var existingUser = _userRepository.GetAll().Any(x => x.Email == email);
 
             //if username alraedy exists in the database
             if (existingUser)
@@ -92,6 +93,7 @@ namespace Glitter.DataAccess.Services
                 Email = email,
                 HashedPassword =
             _cryptoService.EncryptPassword(password, passwordSalt),
+                CreatedOn = DateTime.Now
 
             };
 
@@ -188,6 +190,11 @@ namespace Glitter.DataAccess.Services
                 return true;
             }
             return false;
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            return _userRepository.GetUserByEmail(email);
         }
 
 
