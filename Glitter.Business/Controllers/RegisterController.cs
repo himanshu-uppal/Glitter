@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Glitter.Business.Extensions.RequestModelExtensions;
+using System.Net;
+using System.Net.Http;
 
 namespace Glitter.Business.Controllers
 {
@@ -19,42 +22,31 @@ namespace Glitter.Business.Controllers
             _userManager = userManager;
         }
 
-        public string GetRegister()
+      
+        [HttpPost]
+        public HttpResponseMessage PostRegister([FromBody]UserRequestModel userRequestModel)
         {
-            return "register";
-        }
-
-        public UserDto PostRegister([FromBody]UserRequestModel userRequestModel)
-        {
-            UserDto userDto = new UserDto();
-
-
-           
+                   
             if (ModelState.IsValid)
-            {
-               
+            {             
 
-                var createUserResult = _userManager.CreateUser(
-                   userRequestModel.FirstName, userRequestModel.Email,userRequestModel.Password);
+                var createUserResult = _userManager.CreateUser(userRequestModel.ToUser(),userRequestModel.Password);
 
-                if(createUserResult != null)
+                if(createUserResult.Entity != null)
                 {
-                    userDto =  createUserResult.Entity.ToUserDto();
-                }        
-                    
-                    
-                
+                    return Request.CreateResponse(HttpStatusCode.OK, createUserResult.Entity.ToUserDto());
+                   
+                }
+                return Request.CreateResponse(HttpStatusCode.Conflict);
 
 
 
             }
-
-            return userDto;
-
+           
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
 
 
             
-
         }
     }
 }

@@ -15,10 +15,55 @@ namespace Glitter.DataAccess.Migrations
 
         protected override void Seed(Glitter.DataAccess.Concrete.EFDbContext context)
         {
-            //User user1 = new User { Key = Guid.NewGuid(), FirstName = "user1", CreatedOn = DateTime.Now };
-            //User user2 = new User { Key = Guid.NewGuid(), FirstName = "user2", CreatedOn = DateTime.Now };
-            //User user3 = new User { Key = Guid.NewGuid(), FirstName = "user3", CreatedOn = DateTime.Now };
-            //User user4 = new User { Key = Guid.NewGuid(), FirstName = "user4", CreatedOn = DateTime.Now };
+            //byte[] byteArray = new byte[10];
+            //User user1 = new User
+            //{
+            //    Key = Guid.NewGuid(),
+            //    FirstName = "userOne ",
+            //    LastName = "userOne ",
+            //    Email = "user1@gmail.com",
+            //    ProfileImageData = byteArray,
+            //    ProfileImageMimeType = "jpg",
+            //    ContactNumber = "9999999999",
+            //    Country = "IND",
+            //    CreatedOn = DateTime.Now
+            //};
+            //User user2 = new User
+            //{
+            //    Key = Guid.NewGuid(),
+            //    FirstName = "userTwo",
+            //    LastName = "userTwo",
+            //    Email = "user2@gmail.com",
+            //    ProfileImageData = byteArray,
+            //    ProfileImageMimeType = "jpg",
+            //    ContactNumber = "9999999999",
+            //    Country = "IND",
+            //    CreatedOn = DateTime.Now
+            //};
+            //User user3 = new User
+            //{
+            //    Key = Guid.NewGuid(),
+            //    FirstName = "userThree",
+            //    LastName = "userThree",
+            //    Email = "user3@gmail.com",
+            //    ProfileImageData = byteArray,
+            //    ProfileImageMimeType = "jpg",
+            //    ContactNumber = "9999999999",
+            //    Country = "IND",
+            //    CreatedOn = DateTime.Now
+            //};
+            //User user4 = new User
+            //{
+            //    Key = Guid.NewGuid(),
+            //    FirstName = "userFour",
+            //    LastName = "userFour",
+            //    Email = "user4@gmail.com",
+            //    ProfileImageData = byteArray,
+            //    ProfileImageMimeType = "jpg",
+            //    ContactNumber = "9999999999",
+            //    Country = "IND",
+            //    CreatedOn = DateTime.Now
+            //};
 
             //context.Users.AddOrUpdate(user1, user2, user3, user4);
 
@@ -38,13 +83,13 @@ namespace Glitter.DataAccess.Migrations
 
             //context.UserFollowers.AddOrUpdate(userFollower1, userFollower2, userFollower3, userFollower4);
 
-            //Reaction reaction1 = new Reaction { Key = Guid.NewGuid(),Name = "Like" };
+            //Reaction reaction1 = new Reaction { Key = Guid.NewGuid(), Name = "Like" };
             //Reaction reaction2 = new Reaction { Key = Guid.NewGuid(), Name = "Dislike" };
             //Reaction reaction3 = new Reaction { Key = Guid.NewGuid(), Name = "Heart" };
 
             //context.Reactions.AddOrUpdate(reaction1, reaction2, reaction3);
 
-            //TweetReaction tweetReaction1 = new TweetReaction { Key = Guid.NewGuid(),Tweet = tweet1 ,Reaction = reaction1 , User = user1 };
+            //TweetReaction tweetReaction1 = new TweetReaction { Key = Guid.NewGuid(), Tweet = tweet1, Reaction = reaction1, User = user1 };
             //TweetReaction tweetReaction2 = new TweetReaction { Key = Guid.NewGuid(), Tweet = tweet1, Reaction = reaction2, User = user2 };
             //TweetReaction tweetReaction3 = new TweetReaction { Key = Guid.NewGuid(), Tweet = tweet1, Reaction = reaction3, User = user1 };
             //TweetReaction tweetReaction4 = new TweetReaction { Key = Guid.NewGuid(), Tweet = tweet1, Reaction = reaction1, User = user3 };
@@ -58,15 +103,15 @@ namespace Glitter.DataAccess.Migrations
             //context.TweetReactions.AddOrUpdate(tweetReaction1, tweetReaction2, tweetReaction3, tweetReaction4, tweetReaction5, tweetReaction6,
             //    tweetReaction7, tweetReaction8, tweetReaction9, tweetReaction10);
 
-            //Hashtag hashtag1 = new Hashtag { Key = Guid.NewGuid() ,Name = "hashtag1"};
+            //Hashtag hashtag1 = new Hashtag { Key = Guid.NewGuid(), Name = "hashtag1" };
             //Hashtag hashtag2 = new Hashtag { Key = Guid.NewGuid(), Name = "hashtag2" };
             //Hashtag hashtag3 = new Hashtag { Key = Guid.NewGuid(), Name = "hashtag3" };
             //Hashtag hashtag4 = new Hashtag { Key = Guid.NewGuid(), Name = "hashtag4" };
             //Hashtag hashtag5 = new Hashtag { Key = Guid.NewGuid(), Name = "hashtag5" };
 
-            //context.Hashtags.AddOrUpdate(hashtag1,hashtag2,hashtag3,hashtag4,hashtag5);
+            //context.Hashtags.AddOrUpdate(hashtag1, hashtag2, hashtag3, hashtag4, hashtag5);
 
-            //TweetHashtag tweetHashtag1 = new TweetHashtag { Key = Guid.NewGuid() , Tweet = tweet1,Hashtag = hashtag1 };
+            //TweetHashtag tweetHashtag1 = new TweetHashtag { Key = Guid.NewGuid(), Tweet = tweet1, Hashtag = hashtag1 };
             //TweetHashtag tweetHashtag2 = new TweetHashtag { Key = Guid.NewGuid(), Tweet = tweet1, Hashtag = hashtag2 };
             //TweetHashtag tweetHashtag3 = new TweetHashtag { Key = Guid.NewGuid(), Tweet = tweet1, Hashtag = hashtag3 };
             //TweetHashtag tweetHashtag4 = new TweetHashtag { Key = Guid.NewGuid(), Tweet = tweet2, Hashtag = hashtag1 };

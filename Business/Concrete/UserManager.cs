@@ -23,9 +23,9 @@ namespace Business.Concrete
             return _membershipService.ValidateUser(email, password);
         }
 
-        public OperationResult<User> CreateUser(string username, string email, string password)
+        public OperationResult<User> CreateUser(User user, string password)
         {
-            return _membershipService.CreateUser(username, email, password);
+            return _membershipService.CreateUser( user,  password);
         }
 
         public User GetSingleUser(Guid Key)

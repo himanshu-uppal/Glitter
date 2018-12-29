@@ -70,10 +70,10 @@ namespace Glitter.DataAccess.Services
         /// <param name="email"></param>
         /// <param name="password"></param>        
         /// <returns>return object of Operation Result containing true/false and the user created</returns>
-        public OperationResult<User> CreateUser(string username, string email, string password)
+        public OperationResult<User> CreateUser(User user, string password)
         {
             //getting all users having the same username
-            var existingUser = _userRepository.GetAll().Any(x => x.Email == email);
+            var existingUser = _userRepository.GetAll().Any(x => x.Email == user.Email);
 
             //if username alraedy exists in the database
             if (existingUser)
@@ -85,20 +85,24 @@ namespace Glitter.DataAccess.Services
             var passwordSalt = _cryptoService.GenerateSalt();
 
             //creating user object using User model
-            var user = new User()
+            var newUser = new User()
             {
                 Key = Guid.NewGuid(),
-                FirstName = username,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
                 Salt = passwordSalt,
-                Email = email,
-                HashedPassword =
-            _cryptoService.EncryptPassword(password, passwordSalt),
+                Email = user.Email,
+                HashedPassword = _cryptoService.EncryptPassword(password, passwordSalt),
+                ProfileImageData = user.ProfileImageData,
+                ProfileImageMimeType = user.ProfileImageMimeType,
+                ContactNumber = user.ContactNumber,
+                Country = user.Country,
                 CreatedOn = DateTime.Now
 
             };
 
             //adding newly created user to repository
-            _userRepository.Add(user);
+            _userRepository.Add(newUser);
 
             //saving the user repository
             _userRepository.Save();
@@ -108,7 +112,7 @@ namespace Glitter.DataAccess.Services
             //setting true to result and created user to Entity
             return new OperationResult<User>(true)
             {
-                Entity = user
+                Entity = newUser
             };
         }
 

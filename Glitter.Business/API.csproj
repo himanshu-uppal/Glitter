@@ -89,11 +89,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Config\AutofacConfig.cs" />
     <Compile Include="Config\RouteConfig.cs" />
     <Compile Include="Config\WebAPIConfig.cs" />
-    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\TweetController.cs" />
@@ -106,6 +104,7 @@
     <Compile Include="Extensions\ModelDtoExtensions\TweetReactionExtensions.cs" />
     <Compile Include="Extensions\ModelDtoExtensions\UserExtensions.cs" />
     <Compile Include="Extensions\PaginatedListExtensions.cs" />
+    <Compile Include="Extensions\RequestModelExtensions\UserRequestModelExtensions.cs" />
     <Compile Include="Formatting\SuppressesRequiredMemberSelector.cs" />
     <Compile Include="MessageHandlers\RequireHttpsMessageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

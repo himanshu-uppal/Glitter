@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Shared.DTOs
 {
     public class UserDto:IDto
-    {
+    {        
         public Guid Key { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

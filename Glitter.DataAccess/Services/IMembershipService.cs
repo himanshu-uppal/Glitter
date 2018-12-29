@@ -13,7 +13,7 @@ namespace Glitter.DataAccess.Services
     {
         bool ValidateUser(string email, string password);
 
-        OperationResult<User> CreateUser(string username, string email, string password);
+        OperationResult<User> CreateUser(User user, string password);
        
         User GetSingleUser(Guid Key);
 

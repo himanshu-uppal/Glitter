@@ -39,8 +39,7 @@ namespace Glitter.Business.CustomActionFilters
                     if (user != null)
                     {
                          HttpContext.Current.User = new GenericPrincipal(new GenericIdentity(token), null);
-                        //actionContext.Request.Properties.Add("UserKey",user.Key);
-                    }
+                                           }
 
                 }               
                 else

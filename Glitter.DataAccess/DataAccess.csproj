@@ -68,6 +68,26 @@
     <Compile Include="Migrations\201812210929578_added all entities.Designer.cs">
       <DependentUpon>201812210929578_added all entities.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812290737387_added validation for user.cs" />
+    <Compile Include="Migrations\201812290737387_added validation for user.Designer.cs">
+      <DependentUpon>201812290737387_added validation for user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812290756465_added validation messages.cs" />
+    <Compile Include="Migrations\201812290756465_added validation messages.Designer.cs">
+      <DependentUpon>201812290756465_added validation messages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812290801430_added validation messages for user reg exp uppdated.cs" />
+    <Compile Include="Migrations\201812290801430_added validation messages for user reg exp uppdated.Designer.cs">
+      <DependentUpon>201812290801430_added validation messages for user reg exp uppdated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812290858544_added validation messages for user names reg exp uppdated.cs" />
+    <Compile Include="Migrations\201812290858544_added validation messages for user names reg exp uppdated.Designer.cs">
+      <DependentUpon>201812290858544_added validation messages for user names reg exp uppdated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812290904510_added validation messages for user names reg exp uppdated again.cs" />
+    <Compile Include="Migrations\201812290904510_added validation messages for user names reg exp uppdated again.Designer.cs">
+      <DependentUpon>201812290904510_added validation messages for user names reg exp uppdated again.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CryptoService.cs" />
@@ -84,6 +104,21 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201812210929578_added all entities.resx">
       <DependentUpon>201812210929578_added all entities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812290737387_added validation for user.resx">
+      <DependentUpon>201812290737387_added validation for user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812290756465_added validation messages.resx">
+      <DependentUpon>201812290756465_added validation messages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812290801430_added validation messages for user reg exp uppdated.resx">
+      <DependentUpon>201812290801430_added validation messages for user reg exp uppdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812290858544_added validation messages for user names reg exp uppdated.resx">
+      <DependentUpon>201812290858544_added validation messages for user names reg exp uppdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812290904510_added validation messages for user names reg exp uppdated again.resx">
+      <DependentUpon>201812290904510_added validation messages for user names reg exp uppdated again.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
