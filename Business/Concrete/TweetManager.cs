@@ -38,22 +38,39 @@ namespace Business.Concrete
                 return null;
             }
 
-            List<Tweet> tweets = new List<Tweet>();
+            //List<Tweet> tweets = new List<Tweet>();
 
-            //adding tweets of user
-            tweets.AddRange(user.Tweets);
+            ////adding tweets of user
+            //tweets.AddRange(user.Tweets);
 
-            //adding tweets of user followees
-            var userFollowees = _followManager.GetUserFollowees(user.Key);            
+            ////adding tweets of user followees
+            //var userFollowees = _followManager.GetUserFollowees(user.Key);            
+
+            //foreach (var userFollowee in userFollowees)
+            //{
+            //    tweets.AddRange(userFollowee.Tweets);
+            //}
+            //return tweets;
+
+            var tweets = user.Tweets;
+            foreach(var tweet in tweets)
+            {
+                var hashtags = tweet.TweetHashtags;
+                Console.WriteLine(hashtags);
+            }
+
+            var userFollowees = _followManager.GetUserFollowees(user.Key);
 
             foreach (var userFollowee in userFollowees)
             {
-                tweets.AddRange(userFollowee.Tweets);
+                tweets.Union(userFollowee.Tweets);
             }
-            return tweets;
-            
+            return tweets.OrderBy(t=>t.CreatedOn);
 
-            
+
+
+
+
         }
 
         public Tweet GetTweet(Guid key)
@@ -96,6 +113,76 @@ namespace Business.Concrete
             return tweetSaved;
 
 
+        }
+
+        public Tweet UpdateTweet(Tweet oldTweet, string newTweetMessage)
+        {
+            var regex = new Regex(@"(?<=#)\w+");
+
+            //old Tweet Hashtags
+            var matches = regex.Matches(oldTweet.Message);
+            List<string> oldHashtags = new List<string>();
+            foreach (Match match in matches)
+            {
+                oldHashtags.Add(match.Value);
+            }
+
+            //new Tweet Hashtags
+            matches = regex.Matches(newTweetMessage);
+            List<string> newHashtags = new List<string>();
+            foreach (Match match in matches)
+            {
+                newHashtags.Add(match.Value);
+            }
+
+            IEnumerable<string> hashtagsToAdd;
+            IEnumerable<string> hashtagsToRemove;
+
+            hashtagsToAdd = newHashtags.Except(oldHashtags);
+            hashtagsToRemove = oldHashtags.Except(newHashtags);
+
+            //check if new hastag present , if no create one 
+
+            List<Hashtag> newHashtagsSaved = new List<Hashtag>();
+            Hashtag hashtagSaved;
+            foreach (var hashtag in hashtagsToAdd)
+            {
+                hashtagSaved = _hashtagManager.GetHashTagByName(hashtag);
+                if (hashtagSaved == null)
+                {
+                    hashtagSaved = _hashtagManager.CreateHashtag(hashtag);
+                }
+                if (hashtagSaved != null)
+                {
+                    newHashtagsSaved.Add(hashtagSaved);
+                }
+            }
+
+            //fetching old Hashtags to be removed
+            List<Hashtag> toBeRemovedHashtagsSaved = new List<Hashtag>();
+            Hashtag toBeRemovedHashtagSaved;
+            foreach (var hashtag in hashtagsToRemove)
+            {
+                toBeRemovedHashtagSaved = _hashtagManager.GetHashTagByName(hashtag);
+
+                toBeRemovedHashtagsSaved.Add(toBeRemovedHashtagSaved);
+                
+            }
+
+            oldTweet.Message = newTweetMessage;
+            var updatedTweet = _glitterService.UpdateTweet(oldTweet, newHashtagsSaved, toBeRemovedHashtagsSaved);
+
+            return updatedTweet;
+
+
+        }
+
+        public bool DeleteTweet(Tweet tweet)
+        {
+            if (_glitterService.DeleteTweet(tweet))
+                return true;
+            else
+                return false;
         }
     }
 }

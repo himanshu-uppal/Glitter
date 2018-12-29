@@ -22,7 +22,16 @@ namespace Glitter.DataAccess.Entities
         public virtual User User { get; set; }
         public virtual ICollection<TweetReaction> TweetReactions { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
-        public ICollection<TweetHashtag> TweetHashtags { get; set; }
-        public ICollection<TweetImage> TweetImages { get; set; }
+        public virtual ICollection<TweetHashtag> TweetHashtags { get; set; }
+        public virtual ICollection<TweetImage> TweetImages { get; set; }
+
+        public Tweet()
+        {
+            TweetReactions = new  HashSet<TweetReaction>();
+            Comments = new HashSet<Comment>();
+            TweetHashtags = new HashSet<TweetHashtag>();
+            TweetImages = new HashSet<TweetImage>();
+
+        }
     }
 }

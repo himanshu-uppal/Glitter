@@ -19,6 +19,8 @@ namespace Glitter.DataAccess.Services
 
         Tweet GetTweet(Guid key);
         Tweet CreateTweet(Tweet tweet,IEnumerable<Hashtag> hashtags);
+        Tweet UpdateTweet(Tweet tweet, IEnumerable<Hashtag> hashtagsToAdd, IEnumerable<Hashtag> hashtagsToRemove);
+        bool DeleteTweet(Tweet tweet);
 
         Hashtag GetHashtagByName(string hashtagName);
         Hashtag CreateHashtag(string hashtagName);

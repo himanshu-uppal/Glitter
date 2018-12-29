@@ -18,5 +18,10 @@ namespace Glitter.DataAccess.Entities
         public string Name { get; set; }
 
         public virtual ICollection<TweetHashtag> TweetHashtags { get; set; }
+
+        public Hashtag()
+        {
+            TweetHashtags = new HashSet<TweetHashtag>();
+        }
     }
 }

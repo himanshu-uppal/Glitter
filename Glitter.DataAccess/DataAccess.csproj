@@ -93,6 +93,10 @@
     <Compile Include="Migrations\201812291506125_updated valiadations.Designer.cs">
       <DependentUpon>201812291506125_updated valiadations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812291641560_updated constructors of entities.cs" />
+    <Compile Include="Migrations\201812291641560_updated constructors of entities.Designer.cs">
+      <DependentUpon>201812291641560_updated constructors of entities.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CryptoService.cs" />
@@ -127,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812291506125_updated valiadations.resx">
       <DependentUpon>201812291506125_updated valiadations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812291641560_updated constructors of entities.resx">
+      <DependentUpon>201812291641560_updated constructors of entities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

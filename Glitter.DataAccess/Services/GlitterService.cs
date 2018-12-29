@@ -17,14 +17,17 @@ namespace Glitter.DataAccess.Services
         private readonly IMembershipService _membershipService;
         private readonly IEntityRepository<Hashtag> _hashtagRepository;
         private readonly IEntityRepository<TweetHashtag> _tweetHashtagRepository;
+        private readonly IEntityRepository<TweetReaction> _tweetReactionRepository;
         public GlitterService(IEntityRepository<Tweet> tweetRepository, IEntityRepository<UserFollower> userFollowerRepository,
-            IMembershipService membershipService, IEntityRepository<Hashtag> hashtagRepository, IEntityRepository<TweetHashtag> tweetHashtagRepository)
+            IMembershipService membershipService, IEntityRepository<Hashtag> hashtagRepository, IEntityRepository<TweetHashtag> tweetHashtagRepository,
+            IEntityRepository<TweetReaction> tweetReactionRepository)
         {
             _tweetRepository = tweetRepository;
             _userFollowerRepository = userFollowerRepository;
             _membershipService = membershipService;
             _hashtagRepository = hashtagRepository;
             _tweetHashtagRepository = tweetHashtagRepository;
+            _tweetReactionRepository = tweetReactionRepository;
 
         }
         public IEnumerable<Tweet> GetAllTweets()
@@ -140,6 +143,100 @@ namespace Glitter.DataAccess.Services
             
         }
 
+        public Tweet UpdateTweet(Tweet tweet, IEnumerable<Hashtag> hashtagsToAdd, IEnumerable<Hashtag> hashtagsToRemove)
+        {
+
+            //save the tweet
+            tweet.LastUpdatedOn = DateTime.Now;
+
+            _tweetRepository.Edit(tweet);
+            _tweetRepository.Save();
+
+
+            AssociateTweetWithHashtags(tweet, hashtagsToAdd);
+            DisAssociateTweetWithHashtags(tweet, hashtagsToRemove);
+
+            return tweet;
+        }
+
+        private void DisAssociateTweetWithHashtags(Tweet tweet, IEnumerable<Hashtag> hashtags)
+        {
+            TweetHashtag tweetHashtag;
+
+            foreach (var hashtag in hashtags)
+            {
+                tweetHashtag = _tweetHashtagRepository.GetAll().FirstOrDefault(th=>th.Tweet.Key == tweet.Key && th.Hashtag.Key == hashtag.Key);
+                _tweetHashtagRepository.Delete(tweetHashtag);
+                _tweetHashtagRepository.Save();
+
+                //checking if the hashtag being used in another tweet
+                tweetHashtag = _tweetHashtagRepository.GetAll().FirstOrDefault(th=>th.Hashtag.Key == hashtag.Key);
+
+                //if not used, the delete it
+                if(tweetHashtag == null)
+                {
+                    RemoveHashtag(hashtag);
+
+                }
+            }
+           
+
+
+        }
+
+        public bool DeleteTweet(Tweet tweet)
+        {
+            var tweetHashTags = tweet.TweetHashtags;
+            List<Hashtag> hashtags = new List<Hashtag>();
+
+            foreach(var tweetHashtag in tweetHashTags)
+            {
+                hashtags.Add(tweetHashtag.Hashtag);
+            }
+
+            DisAssociateTweetWithHashtags(tweet, hashtags);
+
+            var tweetReactions = tweet.TweetReactions;
+            if (DeleteTweetReactions(tweetReactions))
+            {
+                _tweetRepository.Delete(tweet);
+                try
+                {
+                    _tweetRepository.Save();
+                }
+                catch(Exception e)
+                {
+                    return false;
+                }
+                
+                return true;
+            }
+
+
+            return false;
+        }
+
+        private bool DeleteTweetReactions(IEnumerable<TweetReaction> tweetReactions)
+        {
+            foreach(var tweetReaction in tweetReactions)
+            {
+                _tweetReactionRepository.Delete(tweetReaction);
+
+            }
+
+            try
+            {
+                _tweetReactionRepository.Save();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            
+            
+        }
+
         public Hashtag GetHashtagByName(string hashtagName)
         {
             return _hashtagRepository.GetHashtagByName(hashtagName);
@@ -163,6 +260,22 @@ namespace Glitter.DataAccess.Services
             catch (Exception e)
             {
                 return null;
+
+            }
+        }
+
+        public bool RemoveHashtag(Hashtag hashtag)
+        {           
+            _hashtagRepository.Delete(hashtag);
+
+            try
+            {
+                _hashtagRepository.Save();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
 
             }
         }

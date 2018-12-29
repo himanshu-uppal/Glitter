@@ -5,6 +5,7 @@ using Glitter.Business.Extensions.ModelDtoExtensions;
 using Glitter.Business.Extensions.RequestModelExtensions;
 using Glitter.Business.Providers;
 using Glitter.DataAccess;
+using Glitter.DataAccess.Entities;
 using Shared.DTOs;
 using Shared.RequestModels;
 using System;
@@ -43,21 +44,7 @@ namespace Glitter.Business.Controllers
         //    });
         //}
 
-        //[HttpGet]
-        //public IEnumerable<TweetDto> GetTweets()
-        //{
-        //    var userToken = HttpContext.Current.User.Identity.Name;
-        //    var userEmail = TokenManager.GetEmailFromToken(userToken);             
-        //    var user = _userManager.GetUserByEmail(userEmail);
-        //    if (user != null)
-        //    {              
-        //        return _tweetManager.GetUserDashboardTweets(user.Key).Select(t=>t.ToTweetDto());
-        //        //return tweets.ToPaginatedDto(tweets.Select(tw => tw.ToTweetDto()));
-
-        //    }
-        //    return null; //can send empty object
-            
-        //}
+       
 
         [HttpGet]
         public HttpResponseMessage GetTweet(string key)
@@ -74,6 +61,7 @@ namespace Glitter.Business.Controllers
         }
 
         [UserAuthenticationFilter]
+        [HttpPost]
         public HttpResponseMessage PostTweet([FromBody] TweetRequestModel tweetRequestModel)
         {
             
@@ -91,6 +79,70 @@ namespace Glitter.Business.Controllers
 
             }
             return Request.CreateResponse(HttpStatusCode.Unauthorized);
+        }
+
+        [UserAuthenticationFilter]
+        [HttpPut]
+        public HttpResponseMessage PutTweet([FromBody] TweetRequestModel tweetRequestModel,string key)
+        {
+            var tweetKey = new Guid(key);
+            var userToken = HttpContext.Current.User.Identity.Name;
+            var userEmail = TokenManager.GetEmailFromToken(userToken);
+            var user = _userManager.GetUserByEmail(userEmail);
+            if (user != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    var tweet = _tweetManager.GetTweet(tweetKey);
+                    if (tweet != null)
+                    {
+                        if(tweet.User.Key == user.Key)
+                        {                                                   
+
+                            var updatedTweet = _tweetManager.UpdateTweet(tweet, tweetRequestModel.Message);
+                            return Request.CreateResponse(HttpStatusCode.OK, updatedTweet.ToTweetDto());
+                        }
+                        return Request.CreateResponse(HttpStatusCode.Unauthorized); //not tweet owner
+
+                    }                    
+                    
+                }
+                return Request.CreateResponse(HttpStatusCode.BadRequest); // model state not valid or tweet does not exist
+
+            }
+            return Request.CreateResponse(HttpStatusCode.Unauthorized); // invalid user or not logged in
+        }
+
+        [UserAuthenticationFilter]
+        [HttpDelete]
+        public HttpResponseMessage DeleteTweet(string key)
+        {
+            var tweetKey = new Guid(key);
+            var userToken = HttpContext.Current.User.Identity.Name;
+            var userEmail = TokenManager.GetEmailFromToken(userToken);
+            var user = _userManager.GetUserByEmail(userEmail);
+            if (user != null)
+            {
+               
+                    var tweet = _tweetManager.GetTweet(tweetKey);
+                    if (tweet != null)
+                    {
+                        if (tweet.User.Key == user.Key)
+                        {
+                            bool tweetDeleted = _tweetManager.DeleteTweet(tweet);
+                        if(tweetDeleted)
+                            return Request.CreateResponse(HttpStatusCode.OK);
+                        return Request.CreateResponse(HttpStatusCode.NotFound);
+                    }
+                        return Request.CreateResponse(HttpStatusCode.Unauthorized); //not tweet owner
+
+                    }
+
+                
+                return Request.CreateResponse(HttpStatusCode.NotFound); //  tweet does not exist
+
+            }
+            return Request.CreateResponse(HttpStatusCode.Unauthorized); // invalid user or not logged in
         }
 
     }

@@ -16,5 +16,7 @@ namespace Business.Abstract
         IEnumerable<Tweet> GetUserDashboardTweets(Guid userKey);
         Tweet GetTweet(Guid key);
         Tweet CreateTweet(Tweet tweet);
+        Tweet UpdateTweet(Tweet oldTweet, string newTweetMessage);
+        bool DeleteTweet(Tweet tweet);
     }
 }
