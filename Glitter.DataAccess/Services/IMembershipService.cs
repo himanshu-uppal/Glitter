@@ -27,5 +27,7 @@ namespace Glitter.DataAccess.Services
         User GetUser(string name);
         User GetUserByEmail(string email);
 
+        IEnumerable<User> SearchPeople(string text);
+
     }
 }

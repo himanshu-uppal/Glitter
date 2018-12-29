@@ -15,5 +15,10 @@ namespace Glitter.DataAccess.Extensions
         {
             return userRepository.GetAll().FirstOrDefault(u => u.Email == email);
         }
+
+        public static IEnumerable<User> SearchPeople(this IEntityRepository<User> userRepository, string text)
+        {
+            return userRepository.GetAll().Where(u => u.FirstName.Contains(text) ||  u.LastName.Contains(text) || u.Email.Contains(text));
+        }
     }
 }

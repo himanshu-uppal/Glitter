@@ -64,6 +64,7 @@
     <Compile Include="Entities\UserFollower.cs" />
     <Compile Include="Extensions\HashtagRepositoryExtensions.cs" />
     <Compile Include="Extensions\IQueryableExtensions.cs" />
+    <Compile Include="Extensions\TweetRepositoryExtensions.cs" />
     <Compile Include="Extensions\UserRepositoryExtensions.cs" />
     <Compile Include="Migrations\201812210929578_added all entities.cs" />
     <Compile Include="Migrations\201812210929578_added all entities.Designer.cs">

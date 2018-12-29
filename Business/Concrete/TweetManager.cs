@@ -184,5 +184,10 @@ namespace Business.Concrete
             else
                 return false;
         }
+
+        public IEnumerable<Tweet> SearchTweets(string text)
+        {
+            return _glitterService.SearchTweets(text);
+        }
     }
 }

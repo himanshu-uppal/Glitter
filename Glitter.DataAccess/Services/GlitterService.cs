@@ -339,5 +339,10 @@ namespace Glitter.DataAccess.Services
             }
         }
 
+        public IEnumerable<Tweet> SearchTweets(string text)
+        {
+            return _tweetRepository.SearchTweets(text);
+        }
+
     }
 }

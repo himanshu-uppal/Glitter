@@ -61,5 +61,10 @@ namespace Business.Concrete
         {
             return _membershipService.GetUserByEmail(email);
         }
+
+        public IEnumerable<User> SearchPeople(string text)
+        {
+            return _membershipService.SearchPeople(text);
+        }
     }
 }

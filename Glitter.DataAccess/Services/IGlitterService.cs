@@ -29,6 +29,8 @@ namespace Glitter.DataAccess.Services
         bool AddReaction(User user,Tweet tweet, Reaction reaction);
         bool RemoveReaction(User user, Tweet tweet, Reaction reaction);
 
+        IEnumerable<Tweet> SearchTweets(string text);
+
 
     }
 }

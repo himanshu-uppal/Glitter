@@ -159,6 +159,11 @@ namespace Glitter.DataAccess.Services
             throw new NotImplementedException();
         }
 
+        public IEnumerable<User> SearchPeople(string text)
+        {
+            return _userRepository.SearchPeople(text);
+        }
+
         // Private helpers
 
 

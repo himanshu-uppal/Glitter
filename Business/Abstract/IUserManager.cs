@@ -27,5 +27,7 @@ namespace Business.Abstract
         User GetUser(string name);
         User GetUserByEmail(string email);
 
+        IEnumerable<User> SearchPeople(string text);
+
     }
 }
