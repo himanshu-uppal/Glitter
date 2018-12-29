@@ -92,6 +92,9 @@
     <Compile Include="Config\AutofacConfig.cs" />
     <Compile Include="Config\RouteConfig.cs" />
     <Compile Include="Config\WebAPIConfig.cs" />
+    <Compile Include="Controllers\FollowController.cs" />
+    <Compile Include="Controllers\FolloweeController.cs" />
+    <Compile Include="Controllers\FollowerController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\TweetController.cs" />

@@ -75,6 +75,10 @@ namespace Glitter.API.Config
           .InstancePerRequest();
 
 
+            builder.RegisterType<FollowManager>()
+         .As<IFollowManager>()
+         .InstancePerRequest();
+
 
 
 

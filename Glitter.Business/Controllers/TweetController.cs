@@ -2,6 +2,7 @@
 using Glitter.Business.CustomActionFilters;
 using Glitter.Business.Extensions;
 using Glitter.Business.Extensions.ModelDtoExtensions;
+using Glitter.Business.Providers;
 using Glitter.DataAccess;
 using Shared.DTOs;
 using System;
@@ -19,9 +20,11 @@ namespace Glitter.Business.Controllers
     public class TweetController:ApiController
     {
         private readonly ITweetManager _tweetManager;
-        public TweetController(ITweetManager tweetManager)
+        private readonly IUserManager _userManager;
+        public TweetController(ITweetManager tweetManager, IUserManager userManager)
         {
             _tweetManager = tweetManager;
+            _userManager = userManager;
 
         }
         //[Route("")]
@@ -36,11 +39,20 @@ namespace Glitter.Business.Controllers
         //    });
         //}
 
-        public PaginatedDto<TweetDto> GetTweets()
+        [HttpGet]
+        public IEnumerable<TweetDto> GetTweets()
         {
-            var userKey = HttpContext.Current.User.Identity.Name;
-            var tweets = _tweetManager.GetTweets();
-            return tweets.ToPaginatedDto(tweets.Select(tw => tw.ToTweetDto()));
+            var userToken = HttpContext.Current.User.Identity.Name;
+            var userEmail = TokenManager.GetEmailFromToken(userToken);             
+            var user = _userManager.GetUserByEmail(userEmail);
+            if (user != null)
+            {              
+                return _tweetManager.GetUserDashboardTweets(user.Key).Select(t=>t.ToTweetDto());
+                //return tweets.ToPaginatedDto(tweets.Select(tw => tw.ToTweetDto()));
+
+            }
+            return null; //can send empty object
+            
         }
     }
 }

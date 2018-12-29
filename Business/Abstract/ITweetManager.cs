@@ -13,6 +13,7 @@ namespace Business.Abstract
         
 
         PaginatedList<Tweet> GetTweets();
-       
+        IEnumerable<Tweet> GetUserDashboardTweets(Guid userKey);
+
     }
 }

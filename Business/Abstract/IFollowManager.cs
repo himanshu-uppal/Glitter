@@ -5,18 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Glitter.DataAccess.Services
+namespace Business.Abstract
 {
-    public interface IGlitterService
+    public interface IFollowManager
     {
-        PaginatedList<Tweet> GetTweets(int pageIndex, int pageSize);
-        IEnumerable<Tweet> GetAllTweets();
-
         IEnumerable<User> GetUserFollowers(Guid userKey);
         IEnumerable<User> GetUserFollowees(Guid userKey);
         bool AddFollowee(Guid followerKey, Guid followeeKey);
         bool RemoveFollowee(Guid followerKey, Guid followeeKey);
-
-
     }
 }

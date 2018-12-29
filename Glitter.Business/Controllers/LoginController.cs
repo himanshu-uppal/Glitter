@@ -33,18 +33,18 @@ namespace Glitter.Business.Controllers
                 "The username/password combination was wrong.");
             return Request.CreateResponse(HttpStatusCode.OK,
                  TokenManager.GenerateToken(user.Email));
-        }
+        }        
 
-        [HttpGet]
-        public HttpResponseMessage GetValidate(string token, string email)
-        {
-            bool exists = _userManager.GetUserByEmail(email) != null;
-            if (!exists) return Request.CreateResponse(HttpStatusCode.NotFound,
-                 "The user was not found.");
-            string tokenEmail = "";// TokenManager.ValidateToken(token);
-            if (email.Equals(tokenEmail))
-                return Request.CreateResponse(HttpStatusCode.OK);
-            return Request.CreateResponse(HttpStatusCode.BadRequest);
-        }
+        //[HttpGet]
+        //public HttpResponseMessage GetValidate(string token, string email)
+        //{
+        //    bool exists = _userManager.GetUserByEmail(email) != null;
+        //    if (!exists) return Request.CreateResponse(HttpStatusCode.NotFound,
+        //         "The user was not found.");
+        //    string tokenEmail = "";// TokenManager.ValidateToken(token);
+        //    if (email.Equals(tokenEmail))
+        //        return Request.CreateResponse(HttpStatusCode.OK);
+        //    return Request.CreateResponse(HttpStatusCode.BadRequest);
+        //}
     }
 }

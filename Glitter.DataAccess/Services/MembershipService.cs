@@ -138,7 +138,9 @@ namespace Glitter.DataAccess.Services
         }
         public User GetUser(Guid key)
         {
-            throw new NotImplementedException();
+            var user = _userRepository.GetSingle(key);
+
+            return user;
         }
 
         /// <summary>
