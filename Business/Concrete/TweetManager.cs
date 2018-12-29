@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Business.Concrete
@@ -16,11 +17,13 @@ namespace Business.Concrete
         private readonly IGlitterService _glitterService;
         private readonly IMembershipService _membershipService;
         private readonly IFollowManager _followManager;
-        public TweetManager(IGlitterService glitterService, IMembershipService membershipService, IFollowManager followManager)
+        private readonly IHashtagManager _hashtagManager;
+        public TweetManager(IGlitterService glitterService, IMembershipService membershipService, IFollowManager followManager, IHashtagManager hashtagManager)
         {
             _glitterService = glitterService;
             _membershipService = membershipService;
             _followManager = followManager;
+            _hashtagManager = hashtagManager;
 
         }
         public PaginatedList<Tweet> GetTweets()
@@ -51,6 +54,48 @@ namespace Business.Concrete
             
 
             
+        }
+
+        public Tweet GetTweet(Guid key)
+        {
+            return _glitterService.GetTweet(key);
+        }
+
+        
+        public Tweet CreateTweet(Tweet tweet)
+        {
+            //it recieves the tweet message with hashtags in it
+            
+            var regex = new Regex(@"(?<=#)\w+");
+            var matches = regex.Matches(tweet.Message);
+            List<string> hashtags = new List<string>();
+            foreach (Match match in matches)
+            {
+                hashtags.Add(match.Value);
+            }
+
+            //check if hastag present , if no create one 
+
+            List<Hashtag> hashtagsSaved = new List<Hashtag>();
+            Hashtag hashtagSaved;
+            foreach(var hashtag in hashtags)
+            {
+                hashtagSaved = _hashtagManager.GetHashTagByName(hashtag);
+                if(hashtagSaved == null)
+                {
+                    hashtagSaved = _hashtagManager.CreateHashtag(hashtag);
+                }
+                if (hashtagSaved != null)
+                {
+                    hashtagsSaved.Add(hashtagSaved);
+                }               
+            }
+
+            var tweetSaved = _glitterService.CreateTweet(tweet, hashtagsSaved);
+
+            return tweetSaved;
+
+
         }
     }
 }

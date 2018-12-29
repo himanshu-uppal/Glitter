@@ -14,6 +14,7 @@ namespace Business.Abstract
 
         PaginatedList<Tweet> GetTweets();
         IEnumerable<Tweet> GetUserDashboardTweets(Guid userKey);
-
+        Tweet GetTweet(Guid key);
+        Tweet CreateTweet(Tweet tweet);
     }
 }

@@ -17,6 +17,12 @@ namespace Glitter.DataAccess.Services
         bool AddFollowee(Guid followerKey, Guid followeeKey);
         bool RemoveFollowee(Guid followerKey, Guid followeeKey);
 
+        Tweet GetTweet(Guid key);
+        Tweet CreateTweet(Tweet tweet,IEnumerable<Hashtag> hashtags);
+
+        Hashtag GetHashtagByName(string hashtagName);
+        Hashtag CreateHashtag(string hashtagName);
+
 
     }
 }

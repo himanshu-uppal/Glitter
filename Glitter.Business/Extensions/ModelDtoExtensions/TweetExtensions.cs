@@ -52,17 +52,21 @@ namespace Glitter.Business.Extensions.ModelDtoExtensions
         {
             var tweetReactionCounts = new List<TweetReactionCountDto>();
             int reactionCount;
-            var reactions = tweet.TweetReactions.Select(tr => tr.Reaction).Distinct();
-            foreach(var reaction in reactions)
+            if(tweet.TweetReactions != null)
             {
-                reactionCount = tweet.TweetReactions.Where(tw => tw.Reaction == reaction).Count();
-                tweetReactionCounts.Add(new TweetReactionCountDto
+                var reactions = tweet.TweetReactions.Select(tr => tr.Reaction).Distinct();
+                foreach (var reaction in reactions)
                 {
-                    Reaction = reaction.ToReactionDto(),
-                    ReactionCount = reactionCount
-                });
+                    reactionCount = tweet.TweetReactions.Where(tw => tw.Reaction == reaction).Count();
+                    tweetReactionCounts.Add(new TweetReactionCountDto
+                    {
+                        Reaction = reaction.ToReactionDto(),
+                        ReactionCount = reactionCount
+                    });
 
-            }
+                }
+
+            }            
             return tweetReactionCounts;
         }
     }

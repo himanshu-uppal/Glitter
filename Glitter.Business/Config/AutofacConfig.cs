@@ -79,6 +79,10 @@ namespace Glitter.API.Config
          .As<IFollowManager>()
          .InstancePerRequest();
 
+            builder.RegisterType<HashtagManager>()
+       .As<IHashtagManager>()
+       .InstancePerRequest();
+
 
 
 

@@ -42,9 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IFollowManager.cs" />
+    <Compile Include="Abstract\IHashtagManager.cs" />
     <Compile Include="Abstract\ITweetManager.cs" />
     <Compile Include="Abstract\IUserManager.cs" />
     <Compile Include="Concrete\FollowManager.cs" />
+    <Compile Include="Concrete\HashtagManager.cs" />
     <Compile Include="Concrete\TweetManager.cs" />
     <Compile Include="Concrete\UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

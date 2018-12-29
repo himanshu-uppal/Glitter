@@ -12,6 +12,9 @@ namespace Glitter.DataAccess.Entities
     {
         [Key]
         public Guid Key { get; set; }
+
+        [Required]
+        [StringLength(240)]
         public string Message { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime? LastUpdatedOn { get; set; }

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Glitter.DataAccess.Abstract;
 using Glitter.DataAccess.Entities;
+using Glitter.DataAccess.Extensions;
+
 
 namespace Glitter.DataAccess.Services
 {
@@ -13,11 +15,16 @@ namespace Glitter.DataAccess.Services
         private readonly IEntityRepository<Tweet> _tweetRepository;
         private readonly IEntityRepository<UserFollower> _userFollowerRepository;
         private readonly IMembershipService _membershipService;
-        public GlitterService(IEntityRepository<Tweet> tweetRepository, IEntityRepository<UserFollower> userFollowerRepository, IMembershipService membershipService)
+        private readonly IEntityRepository<Hashtag> _hashtagRepository;
+        private readonly IEntityRepository<TweetHashtag> _tweetHashtagRepository;
+        public GlitterService(IEntityRepository<Tweet> tweetRepository, IEntityRepository<UserFollower> userFollowerRepository,
+            IMembershipService membershipService, IEntityRepository<Hashtag> hashtagRepository, IEntityRepository<TweetHashtag> tweetHashtagRepository)
         {
             _tweetRepository = tweetRepository;
             _userFollowerRepository = userFollowerRepository;
             _membershipService = membershipService;
+            _hashtagRepository = hashtagRepository;
+            _tweetHashtagRepository = tweetHashtagRepository;
 
         }
         public IEnumerable<Tweet> GetAllTweets()
@@ -81,6 +88,83 @@ namespace Glitter.DataAccess.Services
                 return false;
             }
            
+        }
+
+        public Tweet GetTweet(Guid tweetKey)
+        {
+            return _tweetRepository.GetAll().FirstOrDefault(t=>t.Key == tweetKey);
+        }
+
+        public Tweet CreateTweet(Tweet tweet, IEnumerable<Hashtag> hashtags)
+        {
+
+            //save the tweet
+            tweet.Key = Guid.NewGuid();
+            tweet.CreatedOn = DateTime.Now;
+
+            _tweetRepository.Add(tweet);
+            _tweetRepository.Save();
+
+
+           AssociateTweetWithHashtags(tweet,hashtags);
+
+            return tweet;
+
+        }
+
+        private void AssociateTweetWithHashtags(Tweet tweet, IEnumerable<Hashtag> hashtags)
+        {
+            TweetHashtag tweetHashtag;
+
+            foreach(var hashtag in hashtags)
+            {                
+                tweetHashtag = new TweetHashtag
+                {
+                    Key = Guid.NewGuid(),
+                    Tweet = tweet,
+                    Hashtag = hashtag
+
+                };
+
+                _tweetHashtagRepository.Add(tweetHashtag);
+            }
+            try
+            {
+                _tweetHashtagRepository.Save();
+            }
+            catch(Exception e)
+            {
+                return;
+            }
+            
+            
+        }
+
+        public Hashtag GetHashtagByName(string hashtagName)
+        {
+            return _hashtagRepository.GetHashtagByName(hashtagName);
+        }
+
+        public Hashtag CreateHashtag(string hashtagName)
+        {
+            Hashtag hashtag = new Hashtag
+            {
+                Key = Guid.NewGuid(),
+                Name = hashtagName
+            };
+
+            _hashtagRepository.Add(hashtag);
+
+            try
+            {
+                _hashtagRepository.Save();
+                return hashtag;
+            }
+            catch (Exception e)
+            {
+                return null;
+
+            }
         }
     }
 }

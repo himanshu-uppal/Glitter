@@ -62,6 +62,7 @@
     <Compile Include="Entities\TweetReaction.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserFollower.cs" />
+    <Compile Include="Extensions\HashtagRepositoryExtensions.cs" />
     <Compile Include="Extensions\IQueryableExtensions.cs" />
     <Compile Include="Extensions\UserRepositoryExtensions.cs" />
     <Compile Include="Migrations\201812210929578_added all entities.cs" />
@@ -87,6 +88,10 @@
     <Compile Include="Migrations\201812290904510_added validation messages for user names reg exp uppdated again.cs" />
     <Compile Include="Migrations\201812290904510_added validation messages for user names reg exp uppdated again.Designer.cs">
       <DependentUpon>201812290904510_added validation messages for user names reg exp uppdated again.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812291506125_updated valiadations.cs" />
+    <Compile Include="Migrations\201812291506125_updated valiadations.Designer.cs">
+      <DependentUpon>201812291506125_updated valiadations.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -119,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812290904510_added validation messages for user names reg exp uppdated again.resx">
       <DependentUpon>201812290904510_added validation messages for user names reg exp uppdated again.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812291506125_updated valiadations.resx">
+      <DependentUpon>201812291506125_updated valiadations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

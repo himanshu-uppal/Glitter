@@ -107,6 +107,7 @@
     <Compile Include="Extensions\ModelDtoExtensions\TweetReactionExtensions.cs" />
     <Compile Include="Extensions\ModelDtoExtensions\UserExtensions.cs" />
     <Compile Include="Extensions\PaginatedListExtensions.cs" />
+    <Compile Include="Extensions\RequestModelExtensions\TweetRequestModelExtensions.cs" />
     <Compile Include="Extensions\RequestModelExtensions\UserRequestModelExtensions.cs" />
     <Compile Include="Formatting\SuppressesRequiredMemberSelector.cs" />
     <Compile Include="MessageHandlers\RequireHttpsMessageHandler.cs" />

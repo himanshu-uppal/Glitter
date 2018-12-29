@@ -12,6 +12,9 @@ namespace Glitter.DataAccess.Entities
     {
         [Key]
         public Guid Key { get; set; }
+
+        [Required]
+        [StringLength(100)]
         public string Name { get; set; }
 
         public virtual ICollection<TweetHashtag> TweetHashtags { get; set; }

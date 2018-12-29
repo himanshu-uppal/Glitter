@@ -2,12 +2,16 @@
 using Glitter.Business.CustomActionFilters;
 using Glitter.Business.Extensions;
 using Glitter.Business.Extensions.ModelDtoExtensions;
+using Glitter.Business.Extensions.RequestModelExtensions;
 using Glitter.Business.Providers;
 using Glitter.DataAccess;
 using Shared.DTOs;
+using Shared.RequestModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +20,7 @@ using System.Web.Http;
 
 namespace Glitter.Business.Controllers
 {
-    [UserAuthenticationFilter]
+    
     public class TweetController:ApiController
     {
         private readonly ITweetManager _tweetManager;
@@ -39,20 +43,55 @@ namespace Glitter.Business.Controllers
         //    });
         //}
 
+        //[HttpGet]
+        //public IEnumerable<TweetDto> GetTweets()
+        //{
+        //    var userToken = HttpContext.Current.User.Identity.Name;
+        //    var userEmail = TokenManager.GetEmailFromToken(userToken);             
+        //    var user = _userManager.GetUserByEmail(userEmail);
+        //    if (user != null)
+        //    {              
+        //        return _tweetManager.GetUserDashboardTweets(user.Key).Select(t=>t.ToTweetDto());
+        //        //return tweets.ToPaginatedDto(tweets.Select(tw => tw.ToTweetDto()));
+
+        //    }
+        //    return null; //can send empty object
+            
+        //}
+
         [HttpGet]
-        public IEnumerable<TweetDto> GetTweets()
+        public HttpResponseMessage GetTweet(string key)
         {
+            var tweetKey = new Guid(key);
+
+            var tweet = _tweetManager.GetTweet(tweetKey);
+            if (tweet != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK,tweet.ToTweetDto());
+            }
+            return Request.CreateResponse(HttpStatusCode.NotFound);
+
+        }
+
+        [UserAuthenticationFilter]
+        public HttpResponseMessage PostTweet([FromBody] TweetRequestModel tweetRequestModel)
+        {
+            
             var userToken = HttpContext.Current.User.Identity.Name;
-            var userEmail = TokenManager.GetEmailFromToken(userToken);             
+            var userEmail = TokenManager.GetEmailFromToken(userToken);
             var user = _userManager.GetUserByEmail(userEmail);
             if (user != null)
-            {              
-                return _tweetManager.GetUserDashboardTweets(user.Key).Select(t=>t.ToTweetDto());
-                //return tweets.ToPaginatedDto(tweets.Select(tw => tw.ToTweetDto()));
+            {
+                if (ModelState.IsValid)
+                {
+                    var tweet = _tweetManager.CreateTweet(tweetRequestModel.toTweet(user));
+                    return Request.CreateResponse(HttpStatusCode.OK,tweet.ToTweetDto());
+                }
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
 
             }
-            return null; //can send empty object
-            
+            return Request.CreateResponse(HttpStatusCode.Unauthorized);
         }
+
     }
 }
