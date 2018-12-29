@@ -25,6 +25,10 @@ namespace Glitter.DataAccess.Services
         Hashtag GetHashtagByName(string hashtagName);
         Hashtag CreateHashtag(string hashtagName);
 
+        Reaction GetReaction(Guid key);
+        bool AddReaction(User user,Tweet tweet, Reaction reaction);
+        bool RemoveReaction(User user, Tweet tweet, Reaction reaction);
+
 
     }
 }

@@ -14,10 +14,15 @@ namespace Glitter.Business.Config
         {
             var routes = config.Routes;
             routes.MapHttpRoute(
+                    "ReactionHttpRoute",
+                    "api/tweet/{tweetKey}/{controller}/{reactionKey}",
+                    defaults: new {controller = "Reaction" });
+
+            routes.MapHttpRoute(
                     "DefaultHttpRoute",
                     "api/{controller}/{key}",
-                    defaults: new {controller = "Tweet", key = RouteParameter.Optional });
-       // constraints: new { key = new GuidRouteConstraint() });
+                    defaults: new {  key = RouteParameter.Optional });
+            // constraints: new { key = new GuidRouteConstraint() });
 
             routes.MapHttpRoute(
                     "Default",

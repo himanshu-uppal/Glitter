@@ -83,10 +83,9 @@ namespace Glitter.API.Config
        .As<IHashtagManager>()
        .InstancePerRequest();
 
-
-
-
-
+            builder.RegisterType<ReactionManager>()
+      .As<IReactionManager>()
+      .InstancePerRequest();
 
             return builder.Build();
 

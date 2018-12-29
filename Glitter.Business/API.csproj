@@ -97,6 +97,7 @@
     <Compile Include="Controllers\FollowerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ReactionController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\TweetController.cs" />
     <Compile Include="CustomActionFilters\UserAuthenticationFilter.cs" />

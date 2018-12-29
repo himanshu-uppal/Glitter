@@ -18,9 +18,10 @@ namespace Glitter.DataAccess.Services
         private readonly IEntityRepository<Hashtag> _hashtagRepository;
         private readonly IEntityRepository<TweetHashtag> _tweetHashtagRepository;
         private readonly IEntityRepository<TweetReaction> _tweetReactionRepository;
+        private readonly IEntityRepository<Reaction>  _reactionRepository;
         public GlitterService(IEntityRepository<Tweet> tweetRepository, IEntityRepository<UserFollower> userFollowerRepository,
             IMembershipService membershipService, IEntityRepository<Hashtag> hashtagRepository, IEntityRepository<TweetHashtag> tweetHashtagRepository,
-            IEntityRepository<TweetReaction> tweetReactionRepository)
+            IEntityRepository<TweetReaction> tweetReactionRepository, IEntityRepository<Reaction> reactionRepository)
         {
             _tweetRepository = tweetRepository;
             _userFollowerRepository = userFollowerRepository;
@@ -28,6 +29,7 @@ namespace Glitter.DataAccess.Services
             _hashtagRepository = hashtagRepository;
             _tweetHashtagRepository = tweetHashtagRepository;
             _tweetReactionRepository = tweetReactionRepository;
+            _reactionRepository = reactionRepository;
 
         }
         public IEnumerable<Tweet> GetAllTweets()
@@ -279,5 +281,63 @@ namespace Glitter.DataAccess.Services
 
             }
         }
+
+        public Reaction GetReaction(Guid key)
+        {
+            return _reactionRepository.GetAll().FirstOrDefault(r=>r.Key == key);
+
+        }
+
+        public bool AddReaction(User user, Tweet tweet, Reaction reaction)
+        {
+            TweetReaction previousTweetReaction = _tweetReactionRepository.GetAll().FirstOrDefault(tr=>tr.User.Key == user.Key && tr.Tweet.Key == tweet.Key);
+
+            if(previousTweetReaction != null)
+            {
+                _tweetReactionRepository.Delete(previousTweetReaction);
+                _tweetReactionRepository.Save();
+            }
+            
+            TweetReaction tweetReaction = new TweetReaction
+            {
+                Key = Guid.NewGuid(),
+                User = user,
+                Tweet = tweet,
+                Reaction = reaction
+
+            };
+
+
+            _tweetReactionRepository.Add(tweetReaction);
+
+            try
+            {
+                _tweetReactionRepository.Save();
+                return true;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+        }
+
+        public bool RemoveReaction(User user, Tweet tweet, Reaction reaction)
+        {
+            TweetReaction tweetReaction = _tweetReactionRepository.GetAll().
+                FirstOrDefault(tr=>tr.User.Key == user.Key && tr.Tweet.Key == tweet.Key && tr.Reaction.Key == reaction.Key);
+
+            _tweetReactionRepository.Delete(tweetReaction);           
+
+            try
+            {
+                _tweetReactionRepository.Save();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
     }
 }
