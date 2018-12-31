@@ -18,7 +18,12 @@ Install-Package Microsoft.Owin.Cors -Version 3.0.0
 Install-Package Microsoft.Owin.Security.OAuth -Version 3.0.0
 Install-Package System.IdentityModel.Tokens.Jwt -Version 4.0.0
 Install-Package Thinktecture.IdentityModel.Core Version 1.2.0
+Update-Package Thinktecture.IdentityModel.Core
 
 ------- for resource server --------------in API -----
 Install-Package Microsoft.Owin.Security.Jwt -Version 3.0.0
+Update-Package Microsoft.Owin.Security.Jwt
+
+
+Install-Package Autofac.WebApi2 -Version 4.2.0
 

@@ -14,9 +14,13 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 
+
 namespace Glitter.Business.Controllers
 {
+
+   
     [UserAuthenticationFilter]
+    
     public class FollowController:ApiController
     {
         private readonly IFollowManager _followManager;

@@ -11,8 +11,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 
+
 namespace Glitter.Business.Controllers
 {
+    
     public class LoginController:ApiController
     {
         private readonly IUserManager _userManager;

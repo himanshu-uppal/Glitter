@@ -12,7 +12,16 @@ namespace Glitter.Business.Config
     {
         public static void RegisterRoutes(HttpConfiguration config)
         {
+
+            //EnableCorsAttribute cors = new EnableCorsAttribute(origins: "http://localhost:4200", headers: "*", methods: "*");
+            //config.EnableCors(cors);
+
+
+
             var routes = config.Routes;
+
+          
+
             routes.MapHttpRoute(
                     "ReactionHttpRoute",
                     "api/tweet/{tweetKey}/{controller}/{reactionKey}",

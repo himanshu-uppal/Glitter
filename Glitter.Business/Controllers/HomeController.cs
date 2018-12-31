@@ -13,9 +13,12 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 
+
 namespace Glitter.Business.Controllers
 {
+
     [UserAuthenticationFilter]
+    
     public class HomeController:ApiController
     {
         private readonly ITweetManager _tweetManager;
