@@ -10,7 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-
+using Glitter.Business.Extensions.ModelDtoExtensions;
+using Shared.DTOs;
 
 namespace Glitter.Business.Controllers
 {
@@ -27,6 +28,17 @@ namespace Glitter.Business.Controllers
             _tweetManager = tweetManager;
             _reactionManager = reactionManager;
             _userManager = userManager;
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetReactionTypes()
+        {
+            var reactionTypes = _reactionManager.GetReactionTypes().Select(r => r.ToReactionDto());
+            ReactionTypesResponseDto reactionTypesResponseDto = new ReactionTypesResponseDto
+            {
+                ReactionTypes = reactionTypes
+            };
+            return Request.CreateResponse(HttpStatusCode.OK, reactionTypesResponseDto);
         }
 
         [UserAuthenticationFilter]

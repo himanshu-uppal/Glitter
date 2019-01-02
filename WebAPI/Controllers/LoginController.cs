@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
+using Glitter.Business.Extensions.ModelDtoExtensions;
 using Glitter.Business.Providers;
 using Glitter.DataAccess.Entities;
+using Shared.DTOs;
 using Shared.RequestModels;
 using System;
 using System.Collections.Generic;
@@ -33,8 +35,9 @@ namespace Glitter.Business.Controllers
             bool credentials = _userManager.ValidateUser(loginRequestModel.Email, loginRequestModel.Password);  //change hashedPasword to password
             if (!credentials) return Request.CreateResponse(HttpStatusCode.Forbidden,
                 "The username/password combination was wrong.");
-            return Request.CreateResponse(HttpStatusCode.OK,
-                 TokenManager.GenerateToken(user.Email));
+            UserDto userDto = user.ToUserDto();
+            userDto.Token = TokenManager.GenerateToken(user.Email);
+            return Request.CreateResponse(HttpStatusCode.OK,userDto );
         }        
 
         //[HttpGet]

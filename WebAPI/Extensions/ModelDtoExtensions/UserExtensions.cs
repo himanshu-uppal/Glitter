@@ -18,11 +18,13 @@ namespace Glitter.Business.Extensions.ModelDtoExtensions
                 FirstName =user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
+                Token = "",
                 ProfileImageData = user.ProfileImageData,
                 ProfileImageMimeType = user.ProfileImageMimeType,
                 ContactNumber = user.ContactNumber,
                 Country = user.Country,
                 CreatedOn = user.CreatedOn
+              
 
             };        
 

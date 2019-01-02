@@ -4,6 +4,7 @@ using Glitter.Business.Extensions.ModelDtoExtensions;
 using Glitter.Business.Providers;
 using Glitter.DataAccess.Abstract;
 using Glitter.DataAccess.Entities;
+using Shared.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +40,13 @@ namespace Glitter.Business.Controllers
             var user = _userManager.GetUserByEmail(userEmail);
             if (user != null)
             {
-                return Request.CreateResponse(HttpStatusCode.OK, _followManager.GetUserFollowers(user.Key).Select(uf => uf.ToUserDto()));
+                var followers = _followManager.GetUserFollowers(user.Key).Select(uf => uf.ToUserDto());
+                FollowersDto followersDto = new FollowersDto
+                {
+                    Followers = followers,
+                    FollowersCount = followers.Count()
+                };
+                return Request.CreateResponse(HttpStatusCode.OK, followersDto);
                 //return tweets.ToPaginatedDto(tweets.Select(tw => tw.ToTweetDto()));
 
             }

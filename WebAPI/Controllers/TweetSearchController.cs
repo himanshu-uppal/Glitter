@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Glitter.Business.Extensions.ModelDtoExtensions;
+using Shared.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,16 @@ namespace Glitter.Business.Controllers
         }
 
         [HttpGet]
+        [Route("api/tweetsearch/{key}")]
         public HttpResponseMessage GetTweetsSearched(string key)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, _tweetManager.SearchTweets(key).Select(sp => sp.ToTweetDto()));
+            var tweets = _tweetManager.SearchTweets(key).OrderByDescending(t=>t.CreatedOn).Select(sp => sp.ToTweetDto());
+            TweetResponseDto tweetsResponseDto = new TweetResponseDto
+            {
+                Tweets = tweets,
+                TweetsCount = tweets.Count()
+            };
+            return Request.CreateResponse(HttpStatusCode.OK, tweetsResponseDto);
         }
     }
 }

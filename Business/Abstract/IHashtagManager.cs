@@ -13,5 +13,6 @@ namespace Business.Abstract
       
         Hashtag GetHashTagByName(string hashtag);
         Hashtag CreateHashtag(string hashtag);
+        IEnumerable<Tweet> GetTweetsByHashtag(string hashtag);
     }
 }

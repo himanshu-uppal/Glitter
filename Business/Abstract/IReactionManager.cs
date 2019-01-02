@@ -9,9 +9,11 @@ namespace Business.Abstract
 {
     public interface IReactionManager
     {
+        IEnumerable<Reaction> GetReactionTypes();
         Reaction GetReaction(Guid key);
 
         bool AddReaction(User user,Tweet tweet,Reaction reaction);
         bool RemoveReaction(User user, Tweet tweet, Reaction reaction);
+
     }
 }

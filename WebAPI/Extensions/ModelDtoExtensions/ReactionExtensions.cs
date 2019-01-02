@@ -14,6 +14,7 @@ namespace Glitter.Business.Extensions.ModelDtoExtensions
         {
             return new ReactionDto
             {
+                Key = reaction.Key,
                 Name = reaction.Name
 
             };

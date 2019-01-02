@@ -16,6 +16,10 @@ namespace Business.Concrete
         {
             _glitterService = glitterService;
         }
+        public IEnumerable<Reaction> GetReactionTypes()
+        {
+            return _glitterService.GetReactionTypes();
+        }
         public Reaction GetReaction(Guid key)
         {
             return _glitterService.GetReaction(key);

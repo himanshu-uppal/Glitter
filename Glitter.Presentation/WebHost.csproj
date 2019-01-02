@@ -176,10 +176,6 @@
       <Project>{3e4b705f-1e53-4ade-af35-c3b78b03223b}</Project>
       <Name>Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Glitter.Business\API.csproj">
-      <Project>{07ff2b21-45df-41ea-9509-7e77cbe919c3}</Project>
-      <Name>API</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Glitter.DataAccess\DataAccess.csproj">
       <Project>{b366c60a-7447-490b-9ce9-0d1ee3cb6d0e}</Project>
       <Name>DataAccess</Name>

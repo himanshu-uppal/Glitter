@@ -13,6 +13,7 @@ using System.Net;
 using System.Net.Http;
 
 
+
 namespace Glitter.Business.Controllers
 {
     
@@ -26,11 +27,7 @@ namespace Glitter.Business.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet]
-        public string GetRegister()
-        {
-            return "himanshu";
-        }
+       
 
       
         [HttpPost]       

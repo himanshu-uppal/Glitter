@@ -27,5 +27,10 @@ namespace Business.Concrete
         {
             return _glitterService.CreateHashtag(hashtag);
         }
+
+        public IEnumerable<Tweet> GetTweetsByHashtag(string hashtag)
+        {
+            return _glitterService.GetTweetsByHashtag(hashtag);
+        }
     }
 }

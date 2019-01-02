@@ -25,15 +25,16 @@ namespace WebAPI
 
 
             routes.MapHttpRoute(
-                    "DefaultHttpRoute",
-                    "api/{controller}/{key}",
-                    defaults: new { key = RouteParameter.Optional });
-            // constraints: new { key = new GuidRouteConstraint() });
+                "DefaultHttpRoute",
+                "api/{controller}/{key}",
+                defaults: new { key = RouteParameter.Optional });
 
-            routes.MapHttpRoute(
-                    "Default",
-                    "api/{controller}/{key}",
-                    defaults: new { key = RouteParameter.Optional });
+
+            routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{key}",
+                defaults: new { controller = "Home", action = "Index", key = RouteParameter.Optional }
+            );
         }
     }
 }

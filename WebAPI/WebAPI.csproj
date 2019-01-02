@@ -239,9 +239,11 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Config\AutofacConfig.cs" />
+    <Compile Include="Controllers\FeedController.cs" />
     <Compile Include="Controllers\FollowController.cs" />
     <Compile Include="Controllers\FolloweeController.cs" />
     <Compile Include="Controllers\FollowerController.cs" />
+    <Compile Include="Controllers\HashtagController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PeopleSearchController.cs" />
@@ -249,7 +251,7 @@
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\TweetController.cs" />
     <Compile Include="Controllers\TweetSearchController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="CustomActionFilters\UserAuthenticationFilter.cs" />
     <Compile Include="Extensions\ModelDtoExtensions\CommentExtensions.cs" />
     <Compile Include="Extensions\ModelDtoExtensions\ReactionExtensions.cs" />
@@ -324,6 +326,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Feed\" />
+    <Folder Include="Views\Hashtag\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

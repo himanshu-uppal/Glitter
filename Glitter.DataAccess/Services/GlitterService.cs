@@ -282,6 +282,11 @@ namespace Glitter.DataAccess.Services
             }
         }
 
+        public IEnumerable<Reaction> GetReactionTypes()
+        {
+            return _reactionRepository.GetAll();
+        }
+
         public Reaction GetReaction(Guid key)
         {
             return _reactionRepository.GetAll().FirstOrDefault(r=>r.Key == key);
@@ -342,6 +347,11 @@ namespace Glitter.DataAccess.Services
         public IEnumerable<Tweet> SearchTweets(string text)
         {
             return _tweetRepository.SearchTweets(text);
+        }
+
+        public IEnumerable<Tweet> GetTweetsByHashtag(string hashtag)
+        {
+            return _tweetRepository.SearchTweetsByHashtag(hashtag,_hashtagRepository,_tweetHashtagRepository); //have to change it to serach in hashtag
         }
 
     }

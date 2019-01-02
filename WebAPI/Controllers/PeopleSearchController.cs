@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Glitter.Business.Extensions.ModelDtoExtensions;
+using Shared.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +25,17 @@ namespace Glitter.Business.Controllers
         }
 
         [HttpGet]
+        [Route("api/peoplesearch/{key}")]
         public HttpResponseMessage GetPeopleSearched(string key)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, _userManager.SearchPeople(key).Select(sp=> sp.ToUserDto()));
+            var people = _userManager.SearchPeople(key).Select(sp => sp.ToUserDto());
+            PeopleSearchResponseDto peopleDto = new PeopleSearchResponseDto
+            {
+                People = people,
+                PeopleCount = people.Count()
+            };
+            return Request.CreateResponse(HttpStatusCode.OK, peopleDto);
+         
         }
     }
 }

@@ -12,38 +12,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-
+using System.Web.Mvc;
 
 namespace Glitter.Business.Controllers
 {
 
-    [UserAuthenticationFilter]
-   
-    public class HomeController:ApiController
+    public class HomeController : Controller
     {
-        private readonly ITweetManager _tweetManager;
-        private readonly IUserManager _userManager;
-        public HomeController(ITweetManager tweetManager, IUserManager userManager)
+        public ActionResult Index()
         {
-            _tweetManager = tweetManager;
-            _userManager = userManager;
+            ViewBag.Title = "Home Page";
 
-        }
-
-        [HttpGet]
-        public HttpResponseMessage GetTweets()
-        {
-            var userToken = HttpContext.Current.User.Identity.Name;
-            var userEmail = TokenManager.GetEmailFromToken(userToken);
-            var user = _userManager.GetUserByEmail(userEmail);
-            if (user != null)
-            {
-                return Request.CreateResponse(HttpStatusCode.OK, _tweetManager.GetUserDashboardTweets(user.Key).Select(t => t.ToTweetDto()));
-                //return tweets.ToPaginatedDto(tweets.Select(tw => tw.ToTweetDto()));
-
-            }
-            return Request.CreateResponse(HttpStatusCode.Unauthorized);
-
+            return View();
         }
     }
+
 }

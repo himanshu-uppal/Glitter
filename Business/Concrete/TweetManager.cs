@@ -63,9 +63,14 @@ namespace Business.Concrete
 
             foreach (var userFollowee in userFollowees)
             {
-                tweets.Union(userFollowee.Tweets);
+                foreach (var tweet in userFollowee.Tweets)
+                {
+                    tweets.Add(tweet);
+
+                }
+                
             }
-            return tweets.OrderBy(t=>t.CreatedOn);
+            return tweets.OrderByDescending(t => t.CreatedOn);
 
 
 

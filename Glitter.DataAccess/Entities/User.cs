@@ -1,4 +1,5 @@
 ﻿using Glitter.DataAccess.Abstract;
+using Shared.DTOs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -35,6 +36,9 @@ namespace Glitter.DataAccess.Entities
 
 
         public byte[] ProfileImageData { get; set; }
+
+        
+
         public string ProfileImageMimeType { get; set; }
 
         [Required(ErrorMessage = "Please provide Phone Number")]

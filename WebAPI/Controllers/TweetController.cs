@@ -49,6 +49,7 @@ namespace Glitter.Business.Controllers
        
 
         [HttpGet]
+        [Route("api/tweet/{key}")]
         public HttpResponseMessage GetTweet(string key)
         {
             var tweetKey = new Guid(key);
@@ -84,6 +85,7 @@ namespace Glitter.Business.Controllers
         }
 
         [UserAuthenticationFilter]
+        [Route("api/tweet/{key}")]
         [HttpPut]
         public HttpResponseMessage PutTweet([FromBody] TweetRequestModel tweetRequestModel,string key)
         {
@@ -116,6 +118,7 @@ namespace Glitter.Business.Controllers
         }
 
         [UserAuthenticationFilter]
+        [Route("api/tweet/{key}")]
         [HttpDelete]
         public HttpResponseMessage DeleteTweet(string key)
         {

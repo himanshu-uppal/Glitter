@@ -32,6 +32,7 @@ namespace Glitter.Business.Controllers
             _userManager = userManager;
         }
 
+        [Route("api/follow/{key}")]
         [HttpPost]
         public HttpResponseMessage FollowUser(string key)
         {
@@ -59,6 +60,7 @@ namespace Glitter.Business.Controllers
 
         }
 
+        [Route("api/follow/{key}")]
         [HttpDelete]
         public HttpResponseMessage UnfollowUser(string key)
         {

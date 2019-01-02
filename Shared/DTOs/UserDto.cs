@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Shared.DTOs
 {
     public class UserDto:IDto
-    {        
+    {
+        
         public Guid Key { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Email { get; set; }       
+        public string Email { get; set; }    
+        public string Token { get; set; }
         public byte[] ProfileImageData { get; set; }
         public string ProfileImageMimeType { get; set; }
         public string ContactNumber { get; set; }
